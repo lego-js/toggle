@@ -1,4 +1,4 @@
-# Toggle State
+# Toggle Element States
 
 To use in your module import the lib like so:
 ```
