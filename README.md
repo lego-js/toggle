@@ -54,7 +54,7 @@ Also calls on the afterStateChange callback if provided.
 
 Turns all panels associated with this group to false.
 
-#### setOptions(options) {
+#### setOptions(options)
 
 - options: object [required]
 Override exsisting options with provided object of settings.
