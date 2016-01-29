@@ -5,7 +5,7 @@ To use in your module import the lib like so:
 import * as toggle from '{path/to/lib}/toggle/index';
 ```
 
-The first argument of each constructor is a DOMElement, the second is an object of settings.
+The first argument of each constructor is a HTMLElement, the second is an object of settings.
 
 A `Panel` requires the `group` option to be populated with an instance of `Group`.
 A `Trigger` requires the `panel` options to be populated with an instance of `Panel`.
