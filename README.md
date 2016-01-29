@@ -139,12 +139,12 @@ The event attached to the trigger that sets the panel to inactive.
 
 ### Methods
 
-#### setState() {
+#### setState()
 
 Set the state of this trigger based on the current state of it's associated panel's state.
 
 
-#### detach() {
+#### detach()
 
 Disassociates trigger with it's panel.
 
