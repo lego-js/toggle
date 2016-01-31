@@ -1,3 +1,6 @@
+import data from 'lego-data';
+import state from './utils/state';
+
 export const DEFAULTS = {
     activeEvent: 'click',
     inactiveEvent: 'click'
@@ -6,11 +9,11 @@ export const DEFAULTS = {
 export default class Trigger {
 
     constructor(dom, options) {
-        let trigger = app.data(dom, '_trigger');
+        let trigger = data(dom, '_trigger');
         if (trigger instanceof Trigger) return trigger;
 
         trigger = this;
-        trigger.opts = _.assign({}, DEFAULTS, options);
+        trigger.opts = assign({}, DEFAULTS, options);
         trigger.elem = dom;
         trigger.panel = options.panel.addTrigger(trigger);
         trigger.setState();
@@ -20,13 +23,13 @@ export default class Trigger {
         if (trigger.opts.activeEvent !== trigger.opts.inactiveEvent) {
             trigger.elem.addEventListener(trigger.opts.inactiveEvent, trigger, false);
         }
-        app.data(dom, '_trigger', trigger);
+        data(dom, '_trigger', trigger);
     }
 
     setState() {
         let trigger = this;
 
-        app.state(trigger.elem, trigger.panel.group.opts.state, trigger.panel.state);
+        state(trigger.elem, trigger.panel.group.opts.state, trigger.panel.state);
 
         return trigger;
     }

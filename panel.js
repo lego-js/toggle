@@ -1,3 +1,6 @@
+import assign from './utils/assign';
+import state from './utils/state';
+
 export const DEFAULTS = {
     canTurnSelfOff: true
 };
@@ -7,12 +10,12 @@ export default class {
     constructor(dom, options) {
         let panel = this;
 
-        panel.opts = _.assign({}, DEFAULTS, options);
+        panel.opts = assign({}, DEFAULTS, options);
         panel.elem = dom;
         panel.triggers = [];
         panel.state = false;
         panel.group = options.group.addPanel(panel);
-        panel.setState(app.state(panel.elem, panel.group.opts.state) || !!(window.location.hash && dom.id === window.location.hash.substr(1)));
+        panel.setState(state(panel.elem, panel.group.opts.state) || !!(window.location.hash && dom.id === window.location.hash.substr(1)));
     }
 
     addTrigger(trigger) {
@@ -35,7 +38,7 @@ export default class {
     }
 
     setOptions(options) {
-        _.assign(this.opts, options);
+        assign(this.opts, options);
         return this;
     }
 
@@ -44,7 +47,7 @@ export default class {
 
         active = active === 'toggle' ? !panel.state : active;
         if (active !== panel.state) {
-            app.state(panel.elem, panel.group.opts.state, panel.state = active);
+            state(panel.elem, panel.group.opts.state, panel.state = active);
             if (active) {
                 panel.group.setActivePanel(panel);
             }

@@ -1,3 +1,5 @@
+import assign from './utils/assign';
+
 export const DEFAULTS = {
     state: 'active',
     afterStateChange: undefined
@@ -7,7 +9,7 @@ export default class {
 
     constructor(options) {
         let group = this;
-        group.opts = _.assign({}, DEFAULTS, options);
+        group.opts = assign({}, DEFAULTS, options);
         group.panels = [];
         group.activePanel = undefined;
     }
@@ -50,7 +52,7 @@ export default class {
     }
 
     setOptions(options) {
-        _.assign(this.opts, options);
+        assign(this.opts, options);
         return this;
     }
 }
