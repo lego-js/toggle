@@ -1,8 +1,10 @@
 # Toggle Element States
 
-To use in your module import the lib like so:
+To install the module run: `npm install --save lego-toggle`
+
+To use the toggle library, import like so:
 ```
-import * as toggle from '{path/to/lib}/toggle/index';
+import * as toggle from 'lego-toggle';
 ```
 
 The first argument of each constructor is a HTMLElement, the second is an object of settings.
