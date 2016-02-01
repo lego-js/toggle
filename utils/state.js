@@ -40,7 +40,7 @@ const classie = {
 	}
 };
 
-export default function state(elem, class, active) {
+export default function state(elem, className, active) {
 
 	var service = 'toggle'
 
@@ -52,5 +52,5 @@ export default function state(elem, class, active) {
 		service = active ? 'add' : 'remove';
 	}
 
-	return classie[service](elem, `is-${class}`);
+	return classie[service](elem, `is-${className}`);
 }
