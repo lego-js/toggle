@@ -1,4 +1,5 @@
 import data from 'lego-data';
+import assign from './utils/assign';
 import state from './utils/state';
 
 export const DEFAULTS = {
