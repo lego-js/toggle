@@ -39,12 +39,6 @@ A callback method that will be invoked after a state change.
 ### Methods
 
 
-#### addPanel(panel)
-
-- panel: Panel instance [required]
-Associates panel with current group.
-
-
 #### setActivePanel(activePanel)
 
 - activePanel: Panel instance [required]
@@ -55,6 +49,7 @@ Also calls on the afterStateChange callback if provided.
 #### removeActivatePanel()
 
 Turns all panels associated with this group to false.
+
 
 #### setOptions(options)
 
@@ -85,12 +80,6 @@ If false, a panel can only be turned off by another panel being turned on.
 
 
 ### Methods
-
-
-#### addTrigger(trigger)
-
-- trigger: Trigger instance [required]
-Associates trigger with current panel.
 
 
 #### removeTrigger(trigger)
@@ -140,10 +129,6 @@ The event attached to the trigger that sets the panel to inactive.
 
 
 ### Methods
-
-#### setState()
-
-Set the state of this trigger based on the current state of it's associated panel's state.
 
 
 #### detach()
