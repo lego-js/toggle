@@ -9,22 +9,25 @@ export const DEFAULTS = {
 
 export default class Trigger {
 
-    constructor(dom, options) {
-        let trigger = data(dom, '_trigger');
+    constructor(elem, options) {
+        let trigger = data(elem, '_trigger');
         if (trigger instanceof Trigger) return trigger;
 
         trigger = this;
         trigger.opts = assign({}, DEFAULTS, options);
-        trigger.elem = dom;
+        trigger.elem = elem;
         trigger.panel = options.panel.addTrigger(trigger);
         trigger.setState();
 
-        trigger.elem.addEventListener(trigger.opts.activeEvent, trigger, false);
+        if (elem.tagName.toLowerCase() !== 'a' || elem.tagName.toLowerCase() !== 'button') {
+            elem.setAttribute('tabindex', '0')
+        }
+        elem.addEventListener(trigger.opts.activeEvent, trigger, false);
 
         if (trigger.opts.activeEvent !== trigger.opts.inactiveEvent) {
-            trigger.elem.addEventListener(trigger.opts.inactiveEvent, trigger, false);
+            elem.addEventListener(trigger.opts.inactiveEvent, trigger, false);
         }
-        data(dom, '_trigger', trigger);
+        data(elem, '_trigger', trigger);
     }
 
     setState() {

@@ -42,15 +42,12 @@ const classie = {
 
 export default function state(elem, className, active) {
 
-	var service = 'toggle'
-
 	if (typeof active === 'undefined') {
-		service = 'has';
+		return classie.has(elem, `is-${className}`);
 	}
 
-	else if (active !== 'toggle') {
-		service = active ? 'add' : 'remove';
-	}
+	var service = active === 'toggle' ? 'toggle' : active ? 'add' : 'remove';
 
-	return classie[service](elem, `is-${className}`);
+	classie[service](elem, `is-${className}`);
+	return !!active;
 }
