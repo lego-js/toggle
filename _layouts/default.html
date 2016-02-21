@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+  {% include head.html %}
+
+  <body>
+
+    <nav>
+      <div class="container">
+      
+        {% include nav.html %}
+
+      </div>
+    </nav>
+
+    <main>
+      <div class="container language-javascript">
+
+        {{ content }}
+
+      </div>
+    </main>
+
+    <script src="js/prism.js"></script>
+
+  </body>
+
+</html>

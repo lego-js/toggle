@@ -1,0 +1,16 @@
+{% for top in site.data.nav %}
+	<h2><a href="#{{ top[0] | downcase }}">{{ top[0] }}</a></h2>
+
+	{% for sub in top[1] %}
+
+		<h3><a href="#{{ top[0] | downcase }}-{{ sub[0] | downcase }}">{{ sub[0] }}</a></h3>
+
+		{% for ref in sub[1] %}
+
+			<a href="#{{ top[0] | downcase }}-{{ sub[0] | downcase }}-{{ ref | downcase }}">{{ ref }}</a>
+
+		{% endfor %}
+
+	{% endfor %}
+
+{% endfor %}

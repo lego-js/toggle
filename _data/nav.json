@@ -1,0 +1,37 @@
+{
+	"Group": {
+		"Options": [
+			"state",
+			"afterStateChange"
+		],
+		"Methods": [
+			"removeActivePanel",
+			"setActivePanel",
+			"setOptions"
+		]
+	},
+	"Panel": {
+		"Options": [
+			"group",
+			"canTurnSelfOff"
+		],
+		"Methods": [
+			"addTrigger",
+			"removeTrigger",
+			"setOptions",
+			"setState"
+		]
+	},
+	"Trigger": {
+		"Options": [
+			"panel",
+			"activeEvent",
+			"inactiveEvent"
+		],
+		"Methods": [
+			"setState",
+			"detach",
+			"destroy"
+		]
+	}
+}
