@@ -17,7 +17,3 @@ github_username:  btpoe
 
 # Build settings
 markdown: kramdown
-
-stylus:
-  compress: true
-  path: ./_stylus

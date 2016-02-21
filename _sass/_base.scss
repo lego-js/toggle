@@ -1,0 +1,74 @@
+@import "variables";
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    color: $red;
+    font: 18px 'Catamaran', sans-serif;
+    box-sizing: border-box;
+    background: $white;
+}
+
+body {
+    width: 100%;
+    display: table;
+}
+
+main, nav {
+    display: table-cell;
+    vertical-align: top;
+}
+
+nav {
+    color: $white;
+    background: $blue;
+    border-right: 8px solid $yellow;
+
+    a {
+        color: inherit;
+        display: block;
+        margin: .25em 0;
+    }
+}
+
+main {
+    max-width: 1000px;
+    margin: auto;
+}
+
+a {
+    color: $blue;
+    text-decoration: none;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+pre {
+    font-family: 'Cultive Mono', monospace;
+    width: 100%;
+    padding: 20px;
+    background: $jet;
+    overflow-x: auto;
+}
+
+h1, h2, h3, h4, h5, h6, p, li {
+
+    code {
+        padding: 5px;
+        margin: 2px;
+        background: $jet;
+    }
+}
+
+.container {
+    padding: 20px;
+    height: 100vh;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
