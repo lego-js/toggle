@@ -16,8 +16,6 @@
 			"canTurnSelfOff"
 		],
 		"Methods": [
-			"addTrigger",
-			"removeTrigger",
 			"setOptions",
 			"setState"
 		]
@@ -29,7 +27,6 @@
 			"inactiveEvent"
 		],
 		"Methods": [
-			"setState",
 			"detach",
 			"destroy"
 		]
