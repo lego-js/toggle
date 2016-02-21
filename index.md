@@ -35,7 +35,7 @@ A `Trigger` requires the `panel` options to be populated with an instance of `Pa
 *String*, default: **'active'**
 The class that will be applied to the active panel and that panels triggers
 
-    let group = new Group({
+    let group = new toggle.Group({
         state: 'open'
     });
 
@@ -46,7 +46,7 @@ The class that will be applied to the active panel and that panels triggers
 *String*, default: **null**
 A callback method that will be invoked after a state change.
 
-    let group = new Group({
+    let group = new toggle.Group({
         afterStateChange: function(group, active, activePanel) {
             if (active) {
                 // add logic here...
@@ -74,8 +74,8 @@ Turns all panels associated with this group to false.
 
 <span></span>
     
-    let group = new Group();
-    let panel = new Panel(someElement, { group });
+    let group = new toggle.Group();
+    let panel = new toggle.Panel(someElement, { group });
     
     group.setActivePanel(panel);
 
@@ -118,9 +118,9 @@ The group that this panel belongs to.
 *Boolean*, default: **true**
 If false, a panel can only be turned off by another panel being turned on. Disabling this option is helpful for things like tabs and carousels.
 
-	let group = new Group();
+	let group = new toggle.Group();
 	
-	let panel = new Panel(someElement, {
+	let panel = new toggle.Panel(someElement, {
 		group,
 		canTurnSelfOff: false
 	});
@@ -142,8 +142,8 @@ If false, a panel can only be turned off by another panel being turned on. Disab
     
 <span></span>
 
-	let group = new Group();
-	let panel = new Panel(someElement, { group });
+	let group = new toggle.Group();
+	let panel = new toggle.Panel(someElement, { group });
 	
 	panel.setOptions({
 		myIndex: 12
@@ -161,9 +161,9 @@ If false, a panel can only be turned off by another panel being turned on. Disab
 
 <span></span>
 
-	let group = new Group();
-	let panel1 = new Panel(someElement, { group });
-	let panel2 = new Panel(someOtherElement, { group });
+	let group = new toggle.Group();
+	let panel1 = new toggle.Panel(someElement, { group });
+	let panel2 = new toggle.Panel(someOtherElement, { group });
 	
 	panel2.setState(true);
 	
@@ -212,10 +212,10 @@ The event attached to the trigger that sets the panel to active.
 *String*, default: **'click'**
 The event attached to the trigger that sets the panel to inactive.
 
-	let trigger = new Trigger(someElement, {
+	let trigger = new toggle.Trigger(someElement, {
 		panel: panelInstance,
 		activeEvent: 'click',
-		inactiveEvent: 'hover'
+		inactiveEvent: 'mouseleave'
 	});
 
 
