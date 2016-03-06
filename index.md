@@ -9,7 +9,9 @@ To install the module run: `npm install --save lego-toggle`
 
 To use the toggle library, import like so:
 
-    import * as toggle from 'lego-toggle';
+```javascript
+import * as toggle from 'lego-toggle';
+```
 
 The first argument of each constructor is a HTMLElement, the second is an object of settings.
 
@@ -35,9 +37,11 @@ A `Trigger` requires the `panel` options to be populated with an instance of `Pa
 *String*, default: **'active'**
 The class that will be applied to the active panel and that panels triggers
 
-    let group = new toggle.Group({
-        state: 'open'
-    });
+```javascript
+let group = new toggle.Group({
+    state: 'open'
+});
+```
 
 
 #### afterStateChange [optional]
@@ -46,13 +50,15 @@ The class that will be applied to the active panel and that panels triggers
 *String*, default: **null**
 A callback method that will be invoked after a state change.
 
-    let group = new toggle.Group({
-        afterStateChange: function(group, active, activePanel) {
-            if (active) {
-                // add logic here...
-            }
+```javascript
+let group = new toggle.Group({
+    afterStateChange: function(group, active, activePanel) {
+        if (active) {
+            // add logic here...
         }
-    });
+    }
+});
+```
 
 
 ### Methods
@@ -71,13 +77,13 @@ Turns all panels associated with this group to false.
 - activePanel: **Panel instance** *[required]* <br>
     Sets the provided panel state to active and sets all other panels associated with this group to inactive.
     Also calls on the afterStateChange callback if provided.
+ 
+```javascript
+let group = new toggle.Group();
+let panel = new toggle.Panel(someElement, { group });
 
-<span></span>
-    
-    let group = new toggle.Group();
-    let panel = new toggle.Panel(someElement, { group });
-    
-    group.setActivePanel(panel);
+group.setActivePanel(panel);
+```
 
 
 #### setOptions(options)
@@ -86,12 +92,12 @@ Turns all panels associated with this group to false.
 - options: **object** *[required]* <br>
     Override exsisting options with provided object of settings.
 
-<span></span>
-    
-    group.setOptions({
-        state: 'new-state',
-        someRandomData: { foo: 'bar' }
-    });
+```javascript 
+group.setOptions({
+    state: 'new-state',
+    someRandomData: { foo: 'bar' }
+});
+```
 
 
 
@@ -118,17 +124,20 @@ The group that this panel belongs to.
 *Boolean*, default: **true**
 If false, a panel can only be turned off by another panel being turned on. Disabling this option is helpful for things like tabs and carousels.
 
-	let group = new toggle.Group();
-	
-	let panel = new toggle.Panel(someElement, {
-		group,
-		canTurnSelfOff: false
-	});
-	
-	panel.setState(true);
-	panel.setState(false);
-	
-	group.activePanel === panel; // true
+```javascript
+let group = new toggle.Group();
+
+let panel = new toggle.Panel(someElement, {
+    group,
+    canTurnSelfOff: false
+});
+
+panel.setState(true);
+panel.setState(false);
+
+group.activePanel === panel; // true
+```
+
 
 ### Methods
 {: #panel-methods }
@@ -140,16 +149,16 @@ If false, a panel can only be turned off by another panel being turned on. Disab
 - options: **object** *[required]* <br>
     Override exsisting options with provided object of settings. Also useful for storing arbitrary data.
     
-<span></span>
+```javascript
+let group = new toggle.Group();
+let panel = new toggle.Panel(someElement, { group });
 
-	let group = new toggle.Group();
-	let panel = new toggle.Panel(someElement, { group });
-	
-	panel.setOptions({
-		myIndex: 12
-	});
-	
-	panel.opts.myIndex === 12; // true	
+panel.setOptions({
+    myIndex: 12
+});
+
+panel.opts.myIndex === 12; // true	
+```
 
 
 #### setState(active)
@@ -159,27 +168,27 @@ If false, a panel can only be turned off by another panel being turned on. Disab
     Sets this panel state to active and sets all other panels associated with this panel's group to inactive.
     Also calls on the group's afterStateChange callback if provided.
 
-<span></span>
+```javascript
+let group = new toggle.Group();
+let panel1 = new toggle.Panel(someElement, { group });
+let panel2 = new toggle.Panel(someOtherElement, { group });
 
-	let group = new toggle.Group();
-	let panel1 = new toggle.Panel(someElement, { group });
-	let panel2 = new toggle.Panel(someOtherElement, { group });
-	
-	panel2.setState(true);
-	
-	group.activePanel === panel1; // false
-	group.activePanel === panel2; // true
-	
-	panel1.setState(true);
-	
-	group.activePanel === panel1; // true
-	group.activePanel === panel2; // false
-	
-	panel1.setState(false);
-	
-	group.activePanel === panel1; // false
-	group.activePanel === panel2; // false
-	group.activePanel == null; // true
+panel2.setState(true);
+
+group.activePanel === panel1; // false
+group.activePanel === panel2; // true
+
+panel1.setState(true);
+
+group.activePanel === panel1; // true
+group.activePanel === panel2; // false
+
+panel1.setState(false);
+
+group.activePanel === panel1; // false
+group.activePanel === panel2; // false
+group.activePanel == null; // true
+```
 
 
 ## Trigger
@@ -212,11 +221,13 @@ The event attached to the trigger that sets the panel to active.
 *String*, default: **'click'**
 The event attached to the trigger that sets the panel to inactive.
 
-	let trigger = new toggle.Trigger(someElement, {
-		panel: panelInstance,
-		activeEvent: 'click',
-		inactiveEvent: 'mouseleave'
-	});
+```javascript
+let trigger = new toggle.Trigger(someElement, {
+    panel: panelInstance,
+    activeEvent: 'click',
+    inactiveEvent: 'mouseleave'
+});
+```
 
 
 ### Methods
