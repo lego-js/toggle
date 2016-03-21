@@ -1,6 +1,6 @@
 {
   "name": "lego-toggle",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Maintaining state between elements",
   "main": "index.js",
   "scripts": {
@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/lego-js/toggle#readme",
   "dependencies": {
-    "lego-data": "^1.0.4"
+    "lego-data": "^1.0.7"
   },
   "devDependencies": {
     "babel-preset-es2015": "^6.5.0",
