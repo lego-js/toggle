@@ -56,7 +56,7 @@ export default class {
             }
         }
 
-        panel.triggers.forEach(t => t.setState());
+        panel.triggers.forEach(t => t.syncState());
 
         return panel;
     }

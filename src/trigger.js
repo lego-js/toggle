@@ -17,7 +17,7 @@ export default class Trigger {
         trigger.opts = assign({}, DEFAULTS, options);
         trigger.node = node;
         trigger.panel = options.panel.addTrigger(trigger);
-        trigger.setState();
+        trigger.syncState();
 
         if (node.tagName.toLowerCase() !== 'a' || node.tagName.toLowerCase() !== 'button') {
             node.setAttribute('tabindex', '0')
@@ -30,12 +30,16 @@ export default class Trigger {
         data(node, '_trigger', trigger);
     }
 
-    setState() {
+    syncState() {
         let trigger = this;
 
         state(trigger.node, trigger.panel.group.opts.state, trigger.panel.state);
 
         return trigger;
+    }
+
+    setState(state) {
+        this.panel.setState(state);
     }
 
     handleEvent(e) {
