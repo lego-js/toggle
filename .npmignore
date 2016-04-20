@@ -1,6 +1,6 @@
 .idea
 build
+build.js
 img
 test
-gulpfile.js
 es5-*.js

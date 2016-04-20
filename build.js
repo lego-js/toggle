@@ -1,10 +1,12 @@
-var gulp = require('gulp');
+var argv = require('yargs').argv;
+var browserify = require('browserify');
 var glob = require('glob');
 var source = require('vinyl-source-stream');
-var browserify = require('browserify');
+var vfs = require('vinyl-fs');
 var watchify = require('watchify');
 
 function compile(entry, watch) {
+
     var bundler = browserify({ entries: [entry], debug: true }).transform('babelify', { presets: ['es2015'] });
 
     var name = entry.split('/').pop();
@@ -13,7 +15,7 @@ function compile(entry, watch) {
         bundler.bundle()
             .on('error', function(err) { console.error(err); this.emit('end'); })
             .pipe(source(name))
-            .pipe(gulp.dest('./build'));
+            .pipe(vfs.dest('./build'));
     }
 
     if (watch) {
@@ -26,20 +28,10 @@ function compile(entry, watch) {
     rebundle();
 }
 
-function compileAll(watch) {
-    glob('./src/es5-*.js', function(err, files) {
-        if(err) return;
+glob('./src/es5-*.js', function(err, files) {
+    if(err) return;
 
-        files.map(function(entry) {
-            compile(entry, watch)
-        });
-    })
-}
-
-gulp.task('default', function() {
-    compileAll();
-});
-
-gulp.task('watch', function() {
-    compileAll(true);
+    files.map(function(entry) {
+        compile(entry, argv.watch)
+    });
 });
