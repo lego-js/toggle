@@ -9,31 +9,31 @@ export const DEFAULTS = {
 
 export default class Trigger {
 
-    constructor(elem, options) {
-        let trigger = data(elem, '_trigger');
+    constructor(node, options) {
+        let trigger = data(node, '_trigger');
         if (trigger instanceof Trigger) return trigger;
 
         trigger = this;
         trigger.opts = assign({}, DEFAULTS, options);
-        trigger.elem = elem;
+        trigger.node = node;
         trigger.panel = options.panel.addTrigger(trigger);
         trigger.setState();
 
-        if (elem.tagName.toLowerCase() !== 'a' || elem.tagName.toLowerCase() !== 'button') {
-            elem.setAttribute('tabindex', '0')
+        if (node.tagName.toLowerCase() !== 'a' || node.tagName.toLowerCase() !== 'button') {
+            node.setAttribute('tabindex', '0')
         }
-        elem.addEventListener(trigger.opts.activeEvent, trigger, false);
+        node.addEventListener(trigger.opts.activeEvent, trigger, false);
 
         if (trigger.opts.activeEvent !== trigger.opts.inactiveEvent) {
-            elem.addEventListener(trigger.opts.inactiveEvent, trigger, false);
+            node.addEventListener(trigger.opts.inactiveEvent, trigger, false);
         }
-        data(elem, '_trigger', trigger);
+        data(node, '_trigger', trigger);
     }
 
     setState() {
         let trigger = this;
 
-        state(trigger.elem, trigger.panel.group.opts.state, trigger.panel.state);
+        state(trigger.node, trigger.panel.group.opts.state, trigger.panel.state);
 
         return trigger;
     }
@@ -55,9 +55,9 @@ export default class Trigger {
         let trigger = this;
 
         trigger.panel.removeTrigger(trigger);
-        trigger.elem.removeEventListener(trigger.opts.activeEvent, trigger);
+        trigger.node.removeEventListener(trigger.opts.activeEvent, trigger);
         if (trigger.opts.activeEvent !== trigger.opts.inactiveEvent) {
-            trigger.elem.removeEventListener(trigger.opts.inactiveEvent, trigger);
+            trigger.node.removeEventListener(trigger.opts.inactiveEvent, trigger);
         }
 
         return trigger;
@@ -67,7 +67,7 @@ export default class Trigger {
         let trigger = this;
 
         trigger.detach();
-        trigger.elem.parentNode.removeChild(trigger.elem);
+        trigger.node.parentNode.removeChild(trigger.node);
 
         return trigger;
     }

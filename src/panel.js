@@ -7,15 +7,15 @@ export const DEFAULTS = {
 
 export default class {
 
-    constructor(dom, options) {
+    constructor(node, options) {
         let panel = this;
 
         panel.opts = assign({}, DEFAULTS, options);
-        panel.elem = dom;
+        panel.node = node;
         panel.triggers = [];
         panel.state = false;
         panel.group = options.group.addPanel(panel);
-        panel.setState(state(panel.elem, panel.group.opts.state) || !!(window.location.hash && dom.id === window.location.hash.substr(1)));
+        panel.setState(state(panel.node, panel.group.opts.state) || !!(window.location.hash && node.id === window.location.hash.substr(1)));
     }
 
     addTrigger(trigger) {
@@ -47,7 +47,7 @@ export default class {
 
         active = active === 'toggle' ? !panel.state : active;
         if (active !== panel.state) {
-            state(panel.elem, panel.group.opts.state, panel.state = active);
+            state(panel.node, panel.group.opts.state, panel.state = active);
             if (active) {
                 panel.group.setActivePanel(panel);
             }

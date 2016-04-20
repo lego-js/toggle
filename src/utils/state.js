@@ -1,62 +1,62 @@
-function hasClassInList( elem, c ) {
-    return elem.classList.contains( c );
+function hasClassInList( node, c ) {
+    return node.classList.contains( c );
 }
 
-function addClassInList( elem, c ) {
-    elem.classList.add( c );
+function addClassInList( node, c ) {
+    node.classList.add( c );
 }
 
-function removeClassInList( elem, c ) {
-    elem.classList.remove( c );
+function removeClassInList( node, c ) {
+    node.classList.remove( c );
 }
 
-function hasClassInName( elem, c ) {
-    return ` ${ elem.className } `.indexOf( ` ${ c } ` ) > -1;
+function hasClassInName( node, c ) {
+    return ` ${ node.className } `.indexOf( ` ${ c } ` ) > -1;
 }
 
-function addClassInName( elem, c ) {
-    if ( !hasClassInName( elem, c ) ) {
-        let className = `${elem.className} ${c}`;
-        elem.className.baseVal ? elem.className.baseVal = className : elem.className = className;
+function addClassInName( node, c ) {
+    if ( !hasClassInName( node, c ) ) {
+        let className = `${node.className} ${c}`;
+        node.className.baseVal ? node.className.baseVal = className : node.className = className;
     }
 }
 
-function removeClassInName( elem, c ) {
-    let className = ` ${ elem.className } `.replace( new RegExp( ` ${ c } `, 'g' ), ' ' ).trim();
-    elem.className.baseVal ? elem.className.baseVal = className : elem.className = className;
+function removeClassInName( node, c ) {
+    let className = ` ${ node.className } `.replace( new RegExp( ` ${ c } `, 'g' ), ' ' ).trim();
+    node.className.baseVal ? node.className.baseVal = className : node.className = className;
 }
 
 const classie = {
-    has: function ( elem, c ) {
-        if ( !elem || !c ) return false;
-        return 'classList' in elem ? hasClassInList(elem, c) : hasClassInName(elem, c);
+    has: function ( node, c ) {
+        if ( !node || !c ) return false;
+        return 'classList' in node ? hasClassInList(node, c) : hasClassInName(node, c);
     },
-    add: function ( elem, c ) {
-        if ( !elem || !c ) return;
-        return 'classList' in elem ? addClassInList(elem, c) : addClassInName(elem, c);
+    add: function ( node, c ) {
+        if ( !node || !c ) return;
+        return 'classList' in node ? addClassInList(node, c) : addClassInName(node, c);
     },
-    remove: function ( elem, c ) {
-        if ( !elem || !c ) return;
-        return 'classList' in elem ? removeClassInList(elem, c) : removeClassInName(elem, c);
+    remove: function ( node, c ) {
+        if ( !node || !c ) return;
+        return 'classList' in node ? removeClassInList(node, c) : removeClassInName(node, c);
         },
-    toggle: function ( elem, c ) {
-        if ( !this.has( elem, c ) ) {
-            this.add( elem, c );
+    toggle: function ( node, c ) {
+        if ( !this.has( node, c ) ) {
+            this.add( node, c );
         }
         else {
-            this.remove( elem, c );
+            this.remove( node, c );
         }
     }
 };
 
-export default function state(elem, className, active) {
+export default function state(node, className, active) {
 
     if (typeof active === 'undefined') {
-        return classie.has(elem, `is-${className}`);
+        return classie.has(node, `is-${className}`);
     }
 
     var service = active === 'toggle' ? 'toggle' : active ? 'add' : 'remove';
 
-    classie[service](elem, `is-${className}`);
+    classie[service](node, `is-${className}`);
     return !!active;
 }
