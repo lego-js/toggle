@@ -1,5 +1,5 @@
-import assign from './utils/assign';
-import state from './utils/state';
+import assign from 'object-assign';
+import state from 'lego-state';
 
 export const DEFAULTS = {
     canTurnSelfOff: true

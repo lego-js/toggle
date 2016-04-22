@@ -1,11 +1,11 @@
-var argv = require('yargs').argv;
+var args = require('yargs').argv;
 var browserify = require('browserify');
 var glob = require('glob');
 var source = require('vinyl-source-stream');
 var vfs = require('vinyl-fs');
 var watchify = require('watchify');
 
-function compile(entry, watch) {
+function compile(entry) {
 
     var bundler = browserify({ entries: [entry], debug: true }).transform('babelify', { presets: ['es2015'] });
 
@@ -18,7 +18,7 @@ function compile(entry, watch) {
             .pipe(vfs.dest('./build'));
     }
 
-    if (watch) {
+    if (args.watch) {
         watchify(bundler).on('update', function() {
             console.log('-> bundling...');
             rebundle();
@@ -31,7 +31,5 @@ function compile(entry, watch) {
 glob('./src/es5-*.js', function(err, files) {
     if(err) return;
 
-    files.map(function(entry) {
-        compile(entry, argv.watch)
-    });
+    files.map(compile);
 });

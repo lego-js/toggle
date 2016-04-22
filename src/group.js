@@ -1,4 +1,4 @@
-import assign from './utils/assign';
+import assign from 'object-assign';
 
 export const DEFAULTS = {
     state: 'active',

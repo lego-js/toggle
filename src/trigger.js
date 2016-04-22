@@ -1,8 +1,11 @@
+import assign from 'object-assign';
 import data from 'lego-data';
-import assign from './utils/assign';
-import state from './utils/state';
+import state from 'lego-state';
 
-export const DEFAULTS = {
+const ENTER_KEY = 13;
+const TABBABLE = [ 'a', 'button', 'input', 'object', 'select', 'textarea' ];
+
+export var DEFAULTS = {
     activeEvent: 'click',
     inactiveEvent: 'click'
 };
@@ -19,14 +22,22 @@ export default class Trigger {
         trigger.panel = options.panel.addTrigger(trigger);
         trigger.syncState();
 
-        if (node.tagName.toLowerCase() !== 'a' || node.tagName.toLowerCase() !== 'button') {
-            node.setAttribute('tabindex', '0')
-        }
         node.addEventListener(trigger.opts.activeEvent, trigger, false);
 
         if (trigger.opts.activeEvent !== trigger.opts.inactiveEvent) {
             node.addEventListener(trigger.opts.inactiveEvent, trigger, false);
         }
+
+        if (!~TABBABLE.indexOf(node.tagName.toLowerCase())) {
+            node.setAttribute('tabindex', '0');
+
+            if  (trigger.opts.activeEvent !== 'keydown' && trigger.opts.inactiveEvent !== 'keydown' &&
+                (trigger.opts.activeEvent === 'click' || trigger.opts.inactiveEvent === 'click')) {
+
+                node.addEventListener('keydown', trigger, false);
+            }
+        }
+
         data(node, '_trigger', trigger);
     }
 
@@ -44,12 +55,17 @@ export default class Trigger {
 
     handleEvent(e) {
         let trigger = this;
-        if (e.type === trigger.opts.activeEvent && !trigger.panel.state) {
+        if  (!trigger.panel.state && (e.type === trigger.opts.activeEvent ||
+            (trigger.opts.activeEvent === 'click' && e.type === 'keydown' && e.keyCode === ENTER_KEY))) {
+
             if (e.type === 'click' && (e.metaKey || e.ctrlKey)) return;
+
             e.preventDefault();
             trigger.panel.setState(true);
         }
-        else if (e.type === trigger.opts.inactiveEvent && trigger.panel.state) {
+        else if (trigger.panel.state && (e.type === trigger.opts.inactiveEvent ||
+            (trigger.opts.inactiveEvent === 'click' && e.type === 'keydown' && e.keyCode === ENTER_KEY))) {
+
             e.preventDefault();
             trigger.panel.setState(!trigger.panel.opts.canTurnSelfOff);
         }
