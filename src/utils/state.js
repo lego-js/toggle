@@ -16,14 +16,13 @@ function hasClassInName( elem, c ) {
 
 function addClassInName( elem, c ) {
     if ( !hasClassInName( elem, c ) ) {
-        let className = `${elem.className} ${c}`;
-        elem.className.baseVal ? elem.className.baseVal = className : elem.className = className;
+        elem.setAttribute('class', `${elem.className} ${c}`);
     }
 }
 
 function removeClassInName( elem, c ) {
-    let className = ` ${ elem.className } `.replace( new RegExp( ` ${ c } `, 'g' ), ' ' ).trim();
-    elem.className.baseVal ? elem.className.baseVal = className : elem.className = className;
+    const className = ` ${ elem.className } `.replace( new RegExp( ` ${ c } `, 'g' ), ' ' ).trim();
+    elem.setAttribute('class', className);
 }
 
 const classie = {
